@@ -193,4 +193,4 @@ set showmatch " When a bracket is inserted, briefly jump to the matching one
 set matchtime=1 " ... during this time ms
 
 " open nerdtree at startup
-NERDTree
+autocmd vimenter * NERDTree
