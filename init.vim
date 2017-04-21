@@ -8,9 +8,10 @@ Plug 'tpope/vim-surround'
 Plug 'kien/ctrlp.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'valloric/MatchTagAlways'
+" Plug 'valloric/MatchTagAlways'
 Plug 'critiqjo/lldb.nvim'
-Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'zchee/deoplete-clang'
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'majutsushi/tagbar'
@@ -18,20 +19,22 @@ Plug 'tpope/vim-commentary'
 Plug 'DoxygenToolkit.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'mhartington/oceanic-next'
+Plug 'jiangmiao/auto-pairs'
  " Plug 'taketwo/vim-ros'
 Plug 'junegunn/vim-easy-align'
-Plug 'tpope/vim-fugitive'
-Plug 'sbdchd/neoformat'
+" Plug 'tpope/vim-fugitive'
+" Plug 'sbdchd/neoformat'
 Plug 'rhysd/vim-clang-format'
-Plug 'kana/vim-operator-user'
-Plug 'OmniCppComplete'
+" Plug 'kana/vim-operator-user'
+" Plug 'OmniCppComplete'
 Plug 'airblade/vim-gitgutter'
-Plug 'iCyMind/NeoSolarized'
-Plug 'altercation/vim-colors-solarized'
+" Plug 'iCyMind/NeoSolarized'
+" Plug 'altercation/vim-colors-solarized'
 " Plug 'vim-syntastic/syntastic'
 Plug 'mhinz/vim-startify'
 " Plug 'jplaut/vim-arduino-ino/'
 Plug 'thibthibaut/vim-arduino-ino', { 'branch': 'feature_choose_target' }
+Plug 'clang-complete'
 call plug#end()
 
 
@@ -80,8 +83,8 @@ nnoremap <leader>s :nohlsearch<CR>
 set foldenable
 set foldlevelstart=99
 set foldmethod=indent
-inoremap jk <esc>
-inoremap <Nul> <C-n>
+inoremap jk <esc>:w<CR>
+inoremap <C-space> <C-n>
 
 nnoremap <leader>s :w<CR>
 
@@ -95,10 +98,8 @@ nnoremap <leader>r :source ~/.config/nvim/init.vim<CR>
 nnoremap j gj
 nnoremap k gk
 
-"Colorscheme choice
-nnoremap <leader>1 1gt
-nnoremap <leader>2 2gt
-nnoremap <leader>3 3gt
+nnoremap <leader>1 gT
+nnoremap <leader>2 gt
 
 "ClipBoard settings
 set clipboard=unnamed
@@ -115,8 +116,8 @@ set scrolloff=10
 
 
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ }
+		\ 'colorscheme': 'wombat',
+		\ }
 set laststatus=2
 
 "setlocal spell spelllang=en
@@ -216,7 +217,18 @@ let g:vim_arduino_ino_cpu = 'atmega2560'
 " " let g:syntastic_cpp_compiler = 'g++'
 " let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++
 "
-
 nnoremap <C-b> :make -C ../build<cr>
+
 " Redo prototypes in cpp
 nnoremap <leader>cc ^wd2f:$xdT)A;<esc>
+
+" let g:deoplete#sources#clang#libclang_path = '/usr/lib/x86_64-linux-gnu/libclang.so'
+" let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm-3.4/lib/clang/'
+
+
+" Set xml for ROS launchfiles
+autocmd BufNewFile,BufRead *.launch set filetype=xml
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 0
+
+nnoremap <leader>9 :bNext<cr>
+nnoremap <leader>0 :bprevious<cr>
