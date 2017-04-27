@@ -1,2 +1,2 @@
 # neovim
-My neovim setup but Gedit is way better.
+My neovim setup and Gedit still sucks, as it always did.
